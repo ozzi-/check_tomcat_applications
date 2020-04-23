@@ -103,9 +103,15 @@ bodyshort=${body:0:400}
 
 # exit if we don't get HTTP 200
 if [[ $code -ne 200 ]]; then
-  echo "Response code is not 200 but $code"
-  echo ""
-  echo "Reponse body is: $bodyshort . . . "
+  if [[ $code -eq 000 ]]; then
+    echo "Curl failed to connect"
+    body=$(curl -s -u $login $url $insecurearg --verbose)
+    echo $body
+  else
+    echo "Response code is not 200 but $code"
+    echo ""
+    echo "Reponse body is: $bodyshort . . . "
+  fi
   exit 3
 fi
 
