@@ -42,7 +42,7 @@ Application(s) in non running status: myService = 'stopped'
 
 ## Command Template
 ```
-object CheckCommand "check-ram" {
+object CheckCommand "check-tomcat-applications" {
   command = [ ConfigDir + "/scripts/check_tomcat_applications.sh" ]
   arguments += {
     "-U" = "$cta_url$"
